@@ -8,8 +8,9 @@ function startGame() {
     let hasKeycard = false;
     let hasCode = false;
     let currentRoom = "laboratory";
+    let gameOver = false;
 
-    while (true) {
+    while (!gameOver) {
         let choice;
 
         if (currentRoom === "laboratory") {
@@ -21,17 +22,22 @@ function startGame() {
                 "3. Quit game"
             );
 
-            if (choice === null || choice === "3") {
-                alert("Game ended. Thanks for playing!");
+            if (choice === null) {
+                alert("You cancelled the game.");
                 return;
             }
 
-            if (choice === "1") {
+            choice = choice.trim().toLowerCase();
+
+            if (choice === "3") {
+                alert("Game ended. Thanks for playing!");
+                return;
+            } else if (choice === "1") {
                 if (!hasKeycard) {
                     hasKeycard = true;
                     alert("You found a keycard!");
                 } else {
-                    alert("The desk is empty.");
+                    alert("The desk is empty. You already have the keycard.");
                 }
             } else if (choice === "2") {
                 currentRoom = "security";
@@ -42,16 +48,18 @@ function startGame() {
         } else if (currentRoom === "security") {
             choice = prompt(
                 "SECURITY ROOM\n" +
-                "Screens show cameras throughout the facility.\n\n" +
+                "Screens monitor the entire facility.\n\n" +
                 "1. Search the computer\n" +
                 "2. Go to the Server Room\n" +
                 "3. Return to the Laboratory"
             );
 
             if (choice === null) {
-                alert("Game ended. Thanks for playing!");
+                alert("You cancelled the game.");
                 return;
             }
+
+            choice = choice.trim().toLowerCase();
 
             if (choice === "1") {
                 if (!hasCode) {
@@ -71,16 +79,18 @@ function startGame() {
         } else if (currentRoom === "server") {
             choice = prompt(
                 "SERVER ROOM\n" +
-                "The evil AI NEXUS controls the facility from here.\n\n" +
+                "NEXUS controls the facility from here.\n\n" +
                 "1. Shut down NEXUS\n" +
                 "2. Return to the Security Room\n" +
                 "3. Go to the Exit Gate"
             );
 
             if (choice === null) {
-                alert("Game ended. Thanks for playing!");
+                alert("You cancelled the game.");
                 return;
             }
+
+            choice = choice.trim().toLowerCase();
 
             if (choice === "1") {
                 if (hasCode) {
@@ -100,27 +110,41 @@ function startGame() {
             choice = prompt(
                 "EXIT GATE\n" +
                 "The final door stands before you.\n\n" +
-                "1. Unlock the exit\n" +
+                "1. Attempt to escape\n" +
                 "2. Return to the Server Room"
             );
 
             if (choice === null) {
-                alert("Game ended. Thanks for playing!");
+                alert("You cancelled the game.");
                 return;
             }
+
+            choice = choice.trim().toLowerCase();
 
             if (choice === "1") {
                 if (hasKeycard && hasCode) {
                     alert("SUCCESS! You escaped the facility!");
-                    return;
                 } else {
-                    alert("The door remains locked! You need the keycard and shutdown code.");
+                    alert("NEXUS caught you trying to escape without the required items!");
+                    alert("GAME OVER! The facility is now permanently locked.");
                 }
+
+                gameOver = true;
+
             } else if (choice === "2") {
                 currentRoom = "server";
             } else {
                 alert("Invalid choice. Enter 1 or 2.");
             }
         }
+    }
+
+    // Offer the player another game after an ending.
+    const playAgain = confirm("Would you like to play again?");
+
+    if (playAgain) {
+        startGame();
+    } else {
+        alert("Thanks for playing Escape the Evil AI!");
     }
 }
