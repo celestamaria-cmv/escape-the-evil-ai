@@ -7,6 +7,7 @@ function startGame() {
 
     let hasKeycard = false;
     let hasCode = false;
+    let nexusDown = false;
     let currentRoom = "laboratory";
     let gameOver = false;
 
@@ -93,7 +94,10 @@ function startGame() {
             choice = choice.trim().toLowerCase();
 
             if (choice === "1") {
-                if (hasCode) {
+                if (nexusDown) {
+                    alert("NEXUS is already offline.");
+                } else if (hasCode) {
+                    nexusDown = true;
                     alert("You enter the code and shut down NEXUS!");
                 } else {
                     alert("You need the shutdown code first!");
@@ -122,8 +126,11 @@ function startGame() {
             choice = choice.trim().toLowerCase();
 
             if (choice === "1") {
-                if (hasKeycard && hasCode) {
+                if (hasKeycard && nexusDown) {
                     alert("SUCCESS! You escaped the facility!");
+                } else if (hasKeycard) {
+                    alert("NEXUS is still online and seals the gate as you swipe the keycard!");
+                    alert("GAME OVER! The facility is now permanently locked.");
                 } else {
                     alert("NEXUS caught you trying to escape without the required items!");
                     alert("GAME OVER! The facility is now permanently locked.");

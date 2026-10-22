@@ -1,0 +1,95 @@
+:root {
+    --bg: #05070d;
+    --panel: #0a0f1c;
+    --cyan: #00f0ff;
+    --red: #ff1744;
+    --text: #b8f7ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background:
+        repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.04) 0 1px, transparent 1px 3px),
+        radial-gradient(circle at 50% 0%, #1a0510 0%, var(--bg) 60%);
+    color: var(--text);
+    font-family: "Courier New", Consolas, monospace;
+}
+
+.terminal {
+    width: 100%;
+    max-width: 640px;
+    padding: 2rem;
+    background: var(--panel);
+    border: 1px solid var(--cyan);
+    border-radius: 4px;
+    box-shadow: 0 0 24px rgba(0, 240, 255, 0.25), inset 0 0 30px rgba(255, 23, 68, 0.08);
+}
+
+.status {
+    margin: 0 0 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--red);
+    animation: blink 1.6s steps(2, start) infinite;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cyan);
+    text-shadow: 0 0 8px var(--cyan), 2px 0 var(--red);
+}
+
+h2 {
+    margin: 0.25rem 0 1.5rem;
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--red);
+}
+
+.briefing {
+    padding-left: 1rem;
+    border-left: 3px solid var(--red);
+    line-height: 1.6;
+}
+
+button {
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    font: inherit;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: transparent;
+    border: 2px solid var(--cyan);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover,
+button:focus-visible {
+    color: var(--bg);
+    background: var(--cyan);
+    box-shadow: 0 0 18px var(--cyan);
+    outline: none;
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
