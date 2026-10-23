@@ -1,12 +1,6 @@
 
-/*
- * Escape the Evil AI - Project NEXUS
- * Mohammed: Endings, Input Handling and Replay
- */
-
 // Run one complete adventure.
 function playGame() {
-    // Reset all progress at the beginning of each game.
     let hasKeycard = false;
     let hasCode = false;
     let nexusDown = false;
@@ -203,11 +197,9 @@ function startGame() {
         "These instructions are also available before you start playing."
     );
 
-    // Allow the player to replay without recursive function calls.
     while (true) {
         const result = playGame();
 
-        // Cancel ends the game immediately and safely.
         if (result === "cancelled") {
             return;
         }
@@ -228,5 +220,4 @@ function startGame() {
     }
 }
 
-// Start the game when the JavaScript file loads.
 startGame();
