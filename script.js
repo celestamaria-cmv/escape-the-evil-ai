@@ -3,7 +3,7 @@
 function startGame() {
     alert("Welcome to Escape the Evil AI!");
     alert("You are trapped in a research facility controlled by NEXUS.");
-    alert("Explore the rooms, collect clues, and find a way to escape!");
+    alert("Use your browser console (F12 or Ctrl + Shift + J in Chrome/Edge on Windows) to see the current room (e.g. \"Current room: Laboratory\") and game messages.");
 
     let hasKeycard = false;
     let hasCode = false;
@@ -12,6 +12,7 @@ function startGame() {
     let gameOver = false;
 
     while (!gameOver) {
+        console.log("Current room: " + currentRoom);
         let choice;
 
         if (currentRoom === "laboratory") {
